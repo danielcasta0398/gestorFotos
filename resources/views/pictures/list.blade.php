@@ -6,14 +6,14 @@
 		<button id="newPicture" class="btn btn-success offset-10 col-2" onclick="openModal('create')">Añadir</button>
 	</div>
 
-	<section id="pictures" class="row g-3">
+	<section id="pictures" class="sect-img-cont">
 		@if(!count($pictures))
 			<h2>¡Añade tus primeras fotos!</h2>
 		@else
 			@foreach($pictures as $picture)
-				<div class="card col-md-4 col-sm-6 col-12" id="img-{{$picture->id}}">
-					<img src="{{route('get-picture',['picture'=>$picture->picture_url])}}" class="card-img-top">
-					<div class="card-body">
+				<div class="cont-img" id="img-{{$picture->id}}">
+					<img src="{{route('get-picture',['picture'=>$picture->picture_url])}}" class="img-top">
+					<div class="card-info">
 						<h5 id="cardTitle{{$picture->id}}">{{$picture->picture_name}}</h5>
 						<div id="starsContainer{{$picture->id}}">
 							<select class="star-rating" id="cardRating{{$picture->id}}" disabled="">
@@ -25,7 +25,7 @@
 								<option value="5" @selected("5" == $picture->rating)></option>
 							</select>
 						</div>
-						<div class="row mt-3">
+						<div class="cont-btns">
 							<button class="btn btn-primary col-md-5 col-sm-6 col-12" onclick="openModal('edit',{{$picture->id}})">Editar</button>
 							<button class="btn btn-danger col-md-5 col-sm-6 col-12 offset-md-2" onclick="confirmDeletion({{$picture->id}})">Borrar</button>
 						</div>
